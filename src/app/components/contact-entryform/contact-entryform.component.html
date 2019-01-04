@@ -1,0 +1,62 @@
+<!--loginForm.valid {{loginForm.valid}}<br />
+loginForm.invalid {{loginForm.invalid}}<br />
+loginForm.dirty {{loginForm.dirty}}<br />
+loginForm.pristine {{loginForm.pristine}}<br />
+loginForm.submitted {{loginForm.submitted}}<br />
+loginForm.touched {{loginForm.touched}}<br />
+loginForm.untouched {{loginForm.untouched}}<br />
+firstName.valid : {{loginForm.controls.firstName.valid}}<br />
+firstName.invalid : {{loginForm.controls.firstName.invalid}}<br />
+firstName.dirty : {{loginForm.controls.firstName.dirty}}<br />
+firstName.pristine : {{loginForm.controls.firstName.pristine}}<br />
+firstName.touched : {{loginForm.controls.firstName.touched}}<br />
+firstName.untouched {{loginForm.controls.firstName.untouched}}<br />-->
+
+
+          <form #cntFrm="ngForm" autocomplete="false" novalidate >
+              <input type="hidden" [(ngModel)]="model.id" name="id" />
+              <div class="form-group">
+                <input required [(ngModel)]="model.firstName" type="text" class="form-control" name="firstName" id="firstName" #firstName="ngModel" placeholder="First Name" [ngClass]="{ 'is-invalid': firstName.touched && firstName.invalid }">
+                <div *ngIf="firstName.touched && firstName.invalid" class="invalid-feedback">
+                    <div>First Name is required</div>
+                </div>
+              </div>
+  
+              <div class="form-group">
+                  <input required [(ngModel)]="model.lastName" type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" #lastName="ngModel" [ngClass]="{ 'is-invalid': lastName.touched && lastName.invalid }"/>
+                  <div *ngIf="lastName.touched && lastName.invalid" class="invalid-feedback">
+                        <div>Last Name is required</div>
+                    </div>
+              </div>
+  
+              <div class="form-group">
+                  <input required [(ngModel)]="model.email" type="email" class="form-control" name="email" id="email" placeholder="Email" #email="ngModel" [ngClass]="{ 'is-invalid': email.touched && email.invalid }"/>
+
+                  <div *ngIf="email.touched && email.invalid" class="invalid-feedback">
+                        <div>email is required</div>
+                    </div>
+              </div>        
+  
+              <div class="form-group">
+                  <input required [(ngModel)]="model.phone" type="text" class="form-control" name="phone" id="phone" placeholder="Phone" #phone="ngModel" [ngClass]="{ 'is-invalid': phone.touched && phone.invalid }"/>
+                  <div *ngIf="phone.touched && phone.invalid" class="invalid-feedback">
+                        <div>phone is required</div>
+                    </div>
+              </div>  
+              
+              <div class="float-left">
+                <button type="submit" [disabled]="!cntFrm.valid && !model.id" *ngIf = "!model.id" (click)="cntFrm.form.valid&&createContact(cntFrm);" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i> Save</button> 
+                <button  [disabled]="!cntFrm.touched && !cntFrm.dirty && !cntFrm.valid && model.id" *ngIf = "model.id" (click)="cntFrm.form.valid&&updateContact(cntFrm);" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i> Update</button>
+              </div>
+              <div class="float-right">
+              <button (click)="resetForm(cntFrm);" class="btn btn-default btn-sm"><i class="fa fa-minus-circle"></i> Reset</button>
+            </div>
+              
+            </form>
+
+          
+
+           
+
+
+          
